@@ -1,12 +1,9 @@
 package com.lms.config;
 
-import lombok.extern.log4j.Log4j2;
-import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.servlet.configuration.EnableWebMvcSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -25,7 +22,7 @@ public class SecurityConfig { //시큐리티 설정
                 .authorizeHttpRequests(config ->
                         config
                                 .requestMatchers("/css/**", "/js/**", "/img/**").permitAll()
-                                .requestMatchers("/", "/members/**", "/item/**", "/images/**").permitAll() //해당 경로의 요청은 누구나 허용한다.
+                                .requestMatchers("/", "/members/**", "/item/**", "/images/**", "/course/**").permitAll() //해당 경로의 요청은 누구나 허용한다.
                                 .requestMatchers("/admin/**").hasRole("ADMIN") //해당 경로의 요청은 ADMIN 만 가능
                                 .anyRequest().authenticated() //이외
                 );
